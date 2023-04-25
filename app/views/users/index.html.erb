@@ -1,0 +1,47 @@
+<h1>Make a Chit Chat!</h1>
+<div class="row">
+  <%= form_tag(users_path, method: :get, class: "col-md-6 mb-3") do %>
+    <div class="input-group">
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search users" %>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  <% end %>
+</div>
+
+<% if @users.any? %>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <% @users.each do |user| %>
+    <div class="col">
+      <div class="card h-100">
+        <div class="row no-gutters align-items-center">
+          <div class="col-md-4 text-center">
+            <% if user.avatar.attached? %>
+              <%= image_tag(user.avatar, size: '100x100', style: 'border-radius: 50%;') %>
+            <% else %>
+              <%= image_tag("default.png", size: '100x100', style: 'border-radius: 50%;') %>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= user.user_name %></h5>
+              <p class="card-text"><%= user.email %></p>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Chat", chat_user_path(user), class: "btn btn-success btn-sm" %>
+              <% if params[:search].present? %><br>
+              <span class="float-end">
+                Sent: <%= current_user.where(receiver_id: user.id).count %><br>
+                Received: <%= current_user.where(sender_id: user.id).count %>
+              </span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= will_paginate @users %>
+<% else %>
+  <p>No users available.</p>
+<% end %>

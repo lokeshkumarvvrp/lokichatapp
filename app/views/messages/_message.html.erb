@@ -1,0 +1,12 @@
+
+<% if message.sender == current_user %>
+  <div>
+    <p style="text-align: right"><%= message.body %></p>
+    <p style="text-align: right; font-size: x-small" ><%= message.created_at.strftime('%b %e, %Y at %I:%M %p') %></p>
+  </div>
+<% else %>
+  <div>
+    <p><%= message.body %></p>
+    <p style="font-size: x-small"><%= message.created_at.strftime('%b %e, %Y at %I:%M %p') %></p>
+  </div>
+<% end %>

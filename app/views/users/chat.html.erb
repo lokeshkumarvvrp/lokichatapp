@@ -1,0 +1,31 @@
+
+<div class="d-flex align-items-center">
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, size: '50x50', style: 'border-radius: 50%; margin-right: 10px;' %>
+  <% else %>
+    <%= image_tag "default.png", size: '50x50', style: 'border-radius: 50%; margin-right: 10px;' %>
+  <% end %>
+  <h4><i>Chat with <%= @user.user_name %></h4><i>
+</div>
+<%= render partial: "messages/message", collection: @messages %>
+<%= form_with model: Message.new, url: messages_path, remote: true do |form| %>
+
+  <div class="input-group mb-3">
+    <%= form.hidden_field :receiver_id, value: @user.id %>
+    <%= form.text_field :body, class: "form-control" %>
+    <div class="input-group-append">
+      <%= form.submit "Send", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+<br>
+<%= link_to "Back to Users", users_path, class: "btn btn-secondary" %>
+<style>
+  h2 {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+</style>
+
+
+
