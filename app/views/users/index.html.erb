@@ -30,8 +30,8 @@
               <%= link_to "Chat", chat_user_path(user), class: "btn btn-success btn-sm" %>
               <% if params[:search].present? %><br>
               <span class="float-end">
-                Sent: <%= current_user.where(receiver_id: user.id).count %><br>
-                Received: <%= current_user.where(sender_id: user.id).count %>
+                Sent: <%= current_user.sent_messages.where(receiver_id: user.id).count %><br>
+                Received: <%= current_user.received_messages.where(sender_id: user.id).count %>
               </span>
                 <% end %>
               </div>
