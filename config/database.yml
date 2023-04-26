@@ -12,7 +12,7 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  url: "postgres://lokesh_uyeh_user:atyVKOX2fx9cC0XwJ4p27BxzubqRBqH9@dpg-ch3ljfseoogsn03uovd0-a.oregon-postgres.render.com/lokesh_uyeh"
+  url: "postgres://micronaut_vner_user:rmpjW9hAr0w4fDqkni9JEFFmTWlJTuh8@dpg-ch4hpkm4dad97s3a0fq0-a.oregon-postgres.render.com/micronaut_vner"
 
   #development:
   #<<: *default
